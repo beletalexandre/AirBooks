@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users
+      devise_for :users
   root to: 'pages#home'
   resources :books do
     resources :transactions
   end
-  get 'books/dashboard', to: 'books#dashboard', as: :dashboard
+get 'pages/dashboard', to: 'pages#dashboard', as: :dashboard
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

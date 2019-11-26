@@ -1,0 +1,24 @@
+<div class="container">
+<h1>Search page - books#index -- <%= @s %></h1>
+
+<form action="books#index" method='GET'>
+  <input type="text" name="search">
+  <input type="submit" value="search">
+</form>
+<hr>
+<div style="display: flex;justify-content: center;flex-wrap: wrap">
+  <% @books.each do |book| %>
+    <div class="card" style="margin: 10px;width: 250px;">
+      <div class="card-footer"><%= book.name %></div>
+      <div class="card-body">
+        <div><%= book.price_per_day %> €</div>
+        <div><%= book.author %></div>
+        <div><%= book.category %></div>
+      </div>
+      <div class="card-footer">
+            </div>
+    </div>
+  <% end %>
+
+</div>
+</div>
