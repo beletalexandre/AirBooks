@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_094413) do
+ActiveRecord::Schema.define(version: 2019_11_26_100336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "books", force: :cascade do |t|
+    t.integer "price_per_day"
+    t.string "name"
+    t.string "author"
+    t.string "picture_id"
+    t.integer "category"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.datetime "date_begin"
+    t.datetime "end_date"
+    t.string "status"
+    t.bigint "book_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_transactions_on_book_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +51,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_094413) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "books", "users"
+  add_foreign_key "transactions", "books"
+  add_foreign_key "transactions", "users"
 end
