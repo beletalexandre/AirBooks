@@ -11,12 +11,13 @@ class TransactionsController < ApplicationController
   def new
     @book = Book.find(params[:book_id])
     @transaction = Transaction.new
+    @transaction.book = @book
   end
 
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user = current_user
-    @transaction.book = Book.find(params[:id])
+    @transaction.book = Book.find(params[:book_id])
     @transaction.save
 
     redirect_to transactions_path
@@ -38,3 +39,4 @@ class TransactionsController < ApplicationController
     params.require(:transaction).permit(:date_begin, :end_date)
   end
 end
+

@@ -1,0 +1,45 @@
+<div class="container">
+  <h3><%= @book.name %>, <%= @book.author %></h3>
+
+  <div id="transaction_form" class="d-flex">
+    <div id="transaction_book" class="row col-4">
+      <img src="" alt="">
+    </div>
+
+    <div id="renting_period" class="row col-8">
+      <input type="date" id="begin" value="">
+      <input type="date" id="end" value="">
+      <input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
+    </div>
+
+    <div>
+      <p>Prix : <%= @book.price_per_day %> €/jour</p>
+    </div>
+  </div>
+  <div>
+    <p>Prix total : <span id="price"></span> €</p>
+  </div>
+  <a class="btn btn-gradient" href="#">Confirmer l'achat</a>
+</div>
+
+<script>
+function calcul(b, e, p) {
+  e = new Date(e)
+  b = new Date(b)
+  return ((e - b) / 86400000) * parseInt(p)
+}
+
+  begin = document.getElementById('begin')
+  end = document.getElementById('end')
+  price = document.getElementById('price')
+  p = document.getElementById('p')
+
+
+  begin.addEventListener('change', (event) => {
+    price.innerHTML = calcul(begin.value, end.value, p.value)
+  })
+
+  end.addEventListener('change', (event) => {
+    price.innerHTML = calcul(begin.value, end.value, p.value)
+  })
+</script>
