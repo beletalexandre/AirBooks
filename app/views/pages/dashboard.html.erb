@@ -1,0 +1,28 @@
+
+<h1>Dashboard</h1>
+
+<div class="container">
+  <div style="display: flex;justify-content: center;flex-wrap: wrap">
+  <div class="card">
+
+    <div class="card-body" style="margin: 10px;width: 250px;">
+      <%= link_to '+', new_book_path  %>
+    </div>
+  </div>
+  <% @books.each do |book| %>
+    <div class="card" style="margin: 10px;width: 250px;">
+      <div class="card-footer"><%= book.name %></div>
+      <div class="card-body">
+        <div><%= book.price_per_day %> €</div>
+        <div><%= book.author %></div>
+        <div><%= book.category %></div>
+      </div>
+      <div class="card-footer" style="display: flex;justify-content: space-between;">
+        <div><%= link_to 'edit', edit_book_path(book)  %></div>
+        <div><%= link_to 'delete', book_path(book), method: :delete  %></div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+</div>

@@ -1,10 +1,16 @@
 class BooksController < ApplicationController
   def dashboard
-    @books = Book.all
+    @books = Book.where(user: current_user)
+
   end
 
   def index
-    @books = Book.all
+    @s = params[:search]
+    if @s.nil?
+      @books = Book.all
+    else
+      @books = Book.where("name ilike ?", "%#{@s}%")
+    end
   end
 
   def show
@@ -19,7 +25,7 @@ class BooksController < ApplicationController
     @book = Book.new(books_params)
     @book.user = current_user
     if @book.save
-      redirect_to books_path
+      redirect_to dashboard_path
     else
       render :new
     end
@@ -30,13 +36,15 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.update(books_params)
-    redirect_to book_path(@book)
+    @book = Book.find(params[:id])
+    @book.update(books_params)
+    redirect_to dashboard_path
   end
 
   def destroy
+    @book = Book.find(params[:id])
     @book.destroy
-    redirect_to books_path
+    redirect_to dashboard_path
   end
 
   private
