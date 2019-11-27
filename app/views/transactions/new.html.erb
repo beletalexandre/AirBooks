@@ -1,33 +1,35 @@
 <div class="container">
   <h3><%= @book.name %>, <%= @book.author %></h3>
-
-  <div id="transaction_form" class="d-flex">
-    <div id="transaction_book" class="row col-4">
-      <img src="" alt="">
+  <div class="row">
+    <div class="col-4">
+      <div style="width: 150px;height: 250px;background-color: red"></div>
     </div>
 
-    <div id="renting_period" class="row col-8">
-      <input type="date" id="begin" value="">
-      <input type="date" id="end" value="">
-      <input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
+    <%= form_tag({controller: "transactions", action: "create"}, method: "post") do %>
+    <div class="col-8">
+      <div class="date">
+        <input type="date" id="begin" name="begin" value="">
+        <input type="date" id="end" name="end" value="">
+        <input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
+      </div>
+      <div>
+        <p>Prix : <%= @book.price_per_day %> €/jour</p>
+      </div>
+      <div>
+        <p>Prix total : <span id="price"></span> €</p>
+      </div>
     </div>
-
-    <div>
-      <p>Prix : <%= @book.price_per_day %> €/jour</p>
-    </div>
+    <button type="submit" class="btn btn-primary">Je loue</button>
+    <% end %>
   </div>
-  <div>
-    <p>Prix total : <span id="price"></span> €</p>
-  </div>
-  <a class="btn btn-gradient" href="#">Confirmer l'achat</a>
 </div>
 
 <script>
-function calcul(b, e, p) {
-  e = new Date(e)
-  b = new Date(b)
-  return ((e - b) / 86400000) * parseInt(p)
-}
+  function calcul(b, e, p) {
+    e = new Date(e)
+    b = new Date(b)
+    return ((e - b) / 86400000) * parseInt(p)
+  }
 
   begin = document.getElementById('begin')
   end = document.getElementById('end')
