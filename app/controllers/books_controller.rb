@@ -9,7 +9,10 @@ class BooksController < ApplicationController
   def index
     @s = params[:search]
     if @s.nil?
-      @books = Book.all
+      @books = []
+      b = Book.all
+      @books = b.reject {|item| item.user = current_user}
+
     else
       @books = Book.where("name ilike ?", "%#{@s}%")
     end
