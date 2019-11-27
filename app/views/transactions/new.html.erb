@@ -1,29 +1,32 @@
-<div class="container">
-  <h3><%= @book.name %>, <%= @book.author %></h3>
-  <div class="row">
-    <div class="col-4">
-      <div style="width: 150px;height: 250px;background-color: red"></div>
+<div id="transaction-new">
+  <div class="container" style="margin-left: 150px">
+    <h2><%= @book.name %></h2>
+    <h4 style="font-style: italic"><%= @book.author %></h4>
+    <div class="row">
+      <div class="col-4">
+        <%= image_tag "livre_neutre.jpg", alt: "Livre Neutre", width: 200 %>
+      </div>
+      <div class="col-8" style="border: 1px dotted lightgrey;">
+      <%= form_tag({controller: "transactions", action: "create"}, method: "post") do %>
+        <div class="date">
+          <br><input type="date" id="begin" name="begin" value="">
+          <br><input type="date" id="end" name="end" value="">
+          <br><input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
+        </div>
+        <div>
+          <p>Prix : <%= @book.price_per_day %> €/jour</p>
+        </div>
+        <div>
+          <p>Prix total : <span id="price"></span> €</p>
+          <button type="submit" class="btn btn-primary">Je loue</button>
+        </div>
+        <hr>
+        <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>
+      </div>
+      <% end %>
     </div>
-
-    <%= form_tag({controller: "transactions", action: "create"}, method: "post") do %>
-    <div class="col-8">
-      <div class="date">
-        <input type="date" id="begin" name="begin" value="">
-        <input type="date" id="end" name="end" value="">
-        <input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
-      </div>
-      <div>
-        <p>Prix : <%= @book.price_per_day %> €/jour</p>
-      </div>
-      <div>
-        <p>Prix total : <span id="price"></span> €</p>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Je loue</button>
-    <% end %>
   </div>
 </div>
-
 <script>
   function calcul(b, e, p) {
     e = new Date(e)
