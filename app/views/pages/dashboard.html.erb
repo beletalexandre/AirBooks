@@ -1,7 +1,46 @@
+<style>
+  .card-product {
+    width: 400px;
+    margin:15px;
+    overflow: hidden;
+    height: 140px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+  }
 
+  .card-product img {
+    height: 100%;
+    width: 120px;
+    object-fit: cover;
+  }
+
+  .card-product h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .card-product p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+
+  .card-product .card-product-infos {
+    padding: 16px;
+  }
+
+</style>
+
+
+<div class="container">
 <h1>Dashboard</h1>
 <h2><%= link_to "Je loue un livre", books_path, class: "btn btn-success"  %></h2>
-
+<h2><%= link_to 'Je créé un livre', new_book_path, class: "btn btn-primary"  %></h2>
 <div>
   <div class="row">
     <div class="col-md-6">
@@ -18,37 +57,36 @@
 
 
 <% if params[:status] == 'livres' %>
-<div class="container">
+
   <div style="display: flex;justify-content: center;flex-wrap: wrap">
-    <div class="card">
 
-      <div class="card-body" style="margin: 10px;width: 250px;">
-        <%= link_to '+', new_book_path  %>
-      </div>
-    </div>
-    <% @books.each do |book| %>
-    <div class="card" style="margin: 10px;width: 250px;">
-
-      <div class="card-footer"><%= book.name %></div>
-      <div class="card-body" style="display: flex">
-<%= cl_image_tag book.photo, height: 300, width: 400, crop: :fill %>
-        <div class="info">
-        <div><%= book.price_per_day %> €</div>
-        <div><%= book.author %></div>
-        <div><%= book.category %></div>
+    <div class="card-contain" style="display: flex;flex-wrap: wrap;justify-content: center;padding-bottom: 50px">
+      <% @books.each do |book| %>
+      <div class="card-product">
+        <%= cl_image_tag book.photo, height: 300, width: 400, crop: :fit %>
+        <div class="card-product-infos">
+          <h2><%= book.name %></h2>
+          <div class="info">
+            <div><%= book.price_per_day %> €</div>
+            <div><%= book.author %></div>
+            <div><%= book.category %></div>
+          </div>
+          <div style="display: flex;justify-content: space-between;">
+            <div><%= link_to 'edit', edit_book_path(book)  %></div>
+            <div><%= link_to 'delete', book_path(book), method: :delete  %></div>
+          </div>
         </div>
+      </div>
 
-      </div>
-      <div class="card-footer" style="display: flex;justify-content: space-between;">
-        <div><%= link_to 'edit', edit_book_path(book)  %></div>
-        <div><%= link_to 'delete', book_path(book), method: :delete  %></div>
-      </div>
+      <% end %>
     </div>
-    <% end %>
-
   </div>
 </div>
+
+
 <% else %>
+
+
 <div class="container">
   <h1>Mes transactions</h1>
   <% @transactions.each do |transaction| %>
