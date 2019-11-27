@@ -1,15 +1,31 @@
 
 <h1>Dashboard</h1>
 
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to 'mes livres', dashboard_path(status: 'livres'), class: "btn btn-primary d-block"  %>
+
+    </div>
+    <div class="col-md-6">
+     <%= link_to 'mes transactions', dashboard_path(status: 'transactions'), class: "btn btn-success d-block"  %>
+
+   </div>
+ </div>
+</div>
+
+
+
+<% if params[:status] == 'livres' %>
 <div class="container">
   <div style="display: flex;justify-content: center;flex-wrap: wrap">
-  <div class="card">
+    <div class="card">
 
-    <div class="card-body" style="margin: 10px;width: 250px;">
-      <%= link_to '+', new_book_path  %>
+      <div class="card-body" style="margin: 10px;width: 250px;">
+        <%= link_to '+', new_book_path  %>
+      </div>
     </div>
-  </div>
-  <% @books.each do |book| %>
+    <% @books.each do |book| %>
     <div class="card" style="margin: 10px;width: 250px;">
       <div class="card-footer"><%= book.name %></div>
       <div class="card-body">
@@ -22,7 +38,12 @@
         <div><%= link_to 'delete', book_path(book), method: :delete  %></div>
       </div>
     </div>
-  <% end %>
+    <% end %>
 
+  </div>
 </div>
+<% else %>
+<div class="container">
+  <h1>Mes transactions</h1>
 </div>
+<% end %>
