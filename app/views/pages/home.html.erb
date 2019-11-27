@@ -1,2 +1,36 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<style>
+  .banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+</style>
+
+
+
+
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://artsboston.org/wp-content/uploads/2016/08/Open-Book.jpg);">
+  <div class="container">
+    <h1>AirBooks</h1>
+    <p>Rent your book</p>
+
+    <%= link_to "c'est parti !", dashboard_path(status: 'livres'), class: 'btn btn-primary'   %>
+  </div>
+</div>
+

@@ -24,7 +24,7 @@ User.destroy_all
     b.author = Faker::Book.author
     b.category = rand(5)
     b.user = u
-    url = 'https://res.cloudinary.com/dmyfxmgkr/image/upload/v1574851177/ritxchmfxd6mupntdenf.jpg'
+    url = "https://us.123rf.com/450wm/dp3010/dp30101612/dp3010161200001/69538838-couverture-de-livre-noir-et-cuir-dor%C3%A9.jpg?ver=6"
     b.remote_photo_url = url
     b.save!
   end
