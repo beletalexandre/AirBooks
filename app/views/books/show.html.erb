@@ -1,5 +1,6 @@
 <h1>Books#show for <%= @book.id %> </h1>
 
+<%= cl_image_tag @book.photo, height: 208, width: 165, crop: :fit %>
 <p><span>name : </span><%= @book.name %> </p>
 <p><span>price : </span><%= @book.price_per_day %> €</p>
 <p><span>author : </span><%= @book.author %> </p>
