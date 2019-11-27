@@ -5,7 +5,7 @@
   <%= f.input :name %>
   <%= f.input :author %>
   <%= f.input :price_per_day %>
-  <%= f.input :category %>
+  <%= f.input :category, collection: Book.categories.keys %>
   <%= f.submit %>
 <% end %>
 </div>
