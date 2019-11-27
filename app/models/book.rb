@@ -3,4 +3,5 @@ class Book < ApplicationRecord
 
   enum category: ['policier', 'roman francais', 'roman etranger', 'livre de voyage', 'S.F.', 'heroic Fantasy']
 
+  mount_uploader :photo, PhotoUploader
 end

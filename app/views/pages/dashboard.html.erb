@@ -27,11 +27,16 @@
     </div>
     <% @books.each do |book| %>
     <div class="card" style="margin: 10px;width: 250px;">
+
       <div class="card-footer"><%= book.name %></div>
-      <div class="card-body">
+      <div class="card-body" style="display: flex">
+
+        <div class="info">
         <div><%= book.price_per_day %> €</div>
         <div><%= book.author %></div>
         <div><%= book.category %></div>
+        </div>
+
       </div>
       <div class="card-footer" style="display: flex;justify-content: space-between;">
         <div><%= link_to 'edit', edit_book_path(book)  %></div>

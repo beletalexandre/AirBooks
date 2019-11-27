@@ -11,6 +11,10 @@
     <div class="card" style="margin: 10px;width: 250px;">
       <div class="card-footer"><%= book.name %></div>
       <div class="card-body">
+        <div class="photo">
+          <%= cl_image_tag(book.photo,
+          width: 208, height: 165, crop: :fit) %>
+        </div>
         <div><%= book.price_per_day %> €</div>
         <div><%= book.author %></div>
         <div><%= book.category %></div>

@@ -15,6 +15,7 @@ User.destroy_all
   u.password = x
   u.password_confirmation = x
   u.save!
+  puts u
   5.times do
     b = Book.new()
     b.price_per_day = Faker::Number.decimal_part(digits: 2)
@@ -22,6 +23,8 @@ User.destroy_all
     b.author = Faker::Book.author
     b.category = rand(5)
     b.user = u
+    url = 'https://res.cloudinary.com/dmyfxmgkr/image/upload/v1574851177/ritxchmfxd6mupntdenf.jpg'
+    b.remote_photo_url = url
     b.save!
   end
 end
