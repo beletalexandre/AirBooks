@@ -20,6 +20,7 @@
         <div><%= book.category %></div>
       </div>
       <div class="card-footer">
+        <%= link_to 'louer', new_book_transaction_path(book)  %>
             </div>
     </div>
   <% end %>
