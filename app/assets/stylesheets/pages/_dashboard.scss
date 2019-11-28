@@ -1,0 +1,79 @@
+.container {
+
+  }
+
+  .row {
+    margin: 10px;
+  }
+
+  .card-category {
+    background-size: cover;
+    background-position: center;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  }
+
+  .card-product {
+    width: 400px;
+    margin:15px;
+    overflow: hidden;
+    height: 140px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+  }
+
+  .card-product img {
+    height: 100%;
+    width: 120px;
+    object-fit: cover;
+  }
+
+  .card-product h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  .card-product p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+
+  .card-product .card-product-infos {
+    padding: 16px;
+  }
+
+  .tabs-underlined {
+    display: flex;
+    align-items: center;
+  }
+
+  .tabs-underlined .tab-underlined {
+    color: black;
+    padding: 8px;
+    margin: 8px 16px;
+    opacity: .4;
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+  }
+
+  .tabs-underlined .tab-underlined.active {
+    opacity: 1;
+    border-bottom: 3px solid #555555;
+    background-color: $green;
+    font-weight: bold;
+  }
