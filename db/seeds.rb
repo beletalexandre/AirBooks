@@ -7,11 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+
+Transaction.destroy_all
 Book.destroy_all
 User.destroy_all
 10.times do
   u = User.new()
   u.email = Faker::Internet.email
+  u.first_name = Faker::name
+  u.last_name = Faker::name
   x= 'password'
   u.password = x
   u.password_confirmation = x
