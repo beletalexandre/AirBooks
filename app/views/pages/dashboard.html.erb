@@ -1,38 +1,36 @@
-<div class="container">
-  <div class="boite" style="margin: 40px">
-    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500); margin-bottom: 16px">
-      Dashboard
-    </div>
-
-    <div class="row">
-
-      <div class="col-md-6" style="font-style: italic">
-        <h2><%= link_to 'Je crée un livre', new_book_path, class: "btn btn-primary d-block"  %></h2>
+<div id="dashboard">
+  <div class="container">
+    <div class="boite" style="margin: 40px">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500); margin-bottom: 16px">
+        Bibliothèque
       </div>
 
-      <div class="col-md-6" style="font-style: italic">
-        <h2><%= link_to "Je loue un livre", books_path, class: "btn btn-success d-block"  %></h2>
+      <div class="row">
+        <div class="col-md-6" style="font-style: italic">
+          <h2><%= link_to 'Je crée un livre', new_book_path, class: "btn btn-primary d-block"  %></h2>
+        </div>
+        <div class="col-md-6" style="font-style: italic">
+          <h2><%= link_to "Je loue un livre", books_path, class: "btn btn-success d-block"  %></h2>
+        </div>
       </div>
 
-    </div>
-    <hr>
-    <div class="row" style="border-top: solid 1px $green">
+      <hr>
 
-      <ul class="list-inline tabs-underlined">
-        <li class="tab-underlined active">
-          <%= link_to 'Mes livres', dashboard_path(status: 'livres') %>
-        </li>
-        <li class="tab-underlined">
-          <%= link_to 'Mes transactions', dashboard_path(status: 'transactions') %>
-        </li>
-      </ul>
-
+      <div class="row" style="border-top: solid 1px $green">
+        <ul class="list-inline tabs-underlined">
+          <li class="tab-underlined active">
+            <%= link_to 'Mes livres', dashboard_path(status: 'livres') %>
+          </li>
+          <li class="tab-underlined">
+            <%= link_to 'Mes transactions', dashboard_path(status: 'transactions') %>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <% if params[:status] == 'livres' %>
+
+    <% if params[:status] == 'livres' %>
 
     <div style="display: flex;justify-content: center;flex-wrap: wrap">
-
       <div class="card-contain" style="display: flex;flex-wrap: wrap;justify-content: center;padding-bottom: 50px">
         <% @books.each do |book| %>
         <div class="card-product">
@@ -50,66 +48,61 @@
             </div>
           </div>
         </div>
-
         <% end %>
       </div>
     </div>
   </div>
-</div>
 
+  <% else %>
 
-
-<% else %>
-
-
-<div class="container">
-  <% @transactions.each do |transaction| %>
-  <div class="card">
-    <div class="card-footer" style="display: flex;justify-content: space-between">
-      <div><%= transaction.book.name %></div>
+  <div class="container" style="border-radius: 24px;">
+    <% @transactions.each do |transaction| %>
+    <div class="card">
+      <div class="card-footer" style="display: flex;justify-content: space-between">
+        <div><%= transaction.book.name %></div>
         <div>
-          <%= transaction.date_begin.to_formatted_s(:rfc822)  %>
-          <%= transaction.end_date.to_formatted_s(:rfc822) %>
+          <%= transaction.date_begin.to_formatted_s(:long) %>
+          <%= transaction.end_date.to_formatted_s(:long) %>
         </div>
         <div> <%= transaction.book.user.email %> </div>
         <div>
           <% if transaction.status == 'av' %>
-          <button class="btn btn-danger" disabled="">Attente de validation</button>
+            <button class="btn btn-danger" disabled="">Attente de validation</button>
           <% end %>
           <% if transaction.status == 'ec' %>
-          <button class="btn btn-success" disabled="">En cours</button>
+            <button class="btn btn-success" disabled="">En cours</button>
           <% end %>
           <% if transaction.status == 'done' %>
-          <button class="btn btn-primary" disabled="">done</button>
+            <button class="btn btn-primary" disabled="">done</button>
           <% end %>
         </div>
-    </div>
-  </div>
-  <% end %>
-  <% @transactionsOwner.each do |transaction| %>
-  <div class="card">
-    <div class="card-footer" style="display: flex;justify-content: space-between">
-      <div>    <%= transaction.book.name %></div>
-
-      <div>
-        <%= transaction.date_begin.to_formatted_s(:rfc822)  %>
-        <%= transaction.end_date.to_formatted_s(:rfc822) %>
-      </div>
-
-      <div>
-        <% if transaction.status == 'av' %>
-        <%= link_to 'à valider', update_dashboard_path('ec',transaction), class: "btn btn-danger"  %>
-        <% end %>
-        <% if transaction.status == 'ec' %>
-        <%= link_to 'en cours', update_dashboard_path('done',transaction), class: "btn btn-success"  %>
-
-        <% end %>
-        <% if transaction.status == 'done' %>
-        <button class="btn btn-primary" disabled=""> done</button>
-        <% end %>
       </div>
     </div>
-  </div>
+    <% end %>
+    <% @transactionsOwner.each do |transaction| %>
+    <div class="card" style="margin-bottom: 32px">
+      <div class="card-footer" style="display: flex;justify-content: space-between">
+        <div style="align-content: center; border-right: solid 1px black; padding-right: 16px"><%= transaction.book.name %></div>
+
+        <div>
+          <%= transaction.date_begin.to_formatted_s(:long)  %>
+          <%= transaction.end_date.to_formatted_s(:long) %>
+        </div>
+
+        <div>
+          <% if transaction.status == 'av' %>
+          <%= link_to 'à valider', update_dashboard_path('ec',transaction), class: "btn btn-danger"  %>
+          <% end %>
+          <% if transaction.status == 'ec' %>
+          <%= link_to 'en cours', update_dashboard_path('done',transaction), class: "btn btn-success"  %>
+          <% end %>
+          <% if transaction.status == 'done' %>
+          <button class="btn btn-primary" disabled=""> done</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
   <% end %>
+  </div>
 </div>
-<% end %>
