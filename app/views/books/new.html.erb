@@ -1,5 +1,5 @@
 <h1>CREATE A NEW BOOK</h1>
-<div class="container">
+<div class="container" style="margin-bottom: 32px">
   <%= simple_form_for(@book) do |f| %>
   <div class="form-row d-flex">
     <div class="form-group col-6">
@@ -16,6 +16,5 @@
   <%= f.submit class:"btn btn-primary"%>
   <% end %>
   <hr>
-  <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>
-
+  <%= link_to 'Return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>
 </div>
