@@ -1,53 +1,12 @@
-<style>
-  .card-product {
-    width: 400px;
-    margin:15px;
-    overflow: hidden;
-    height: 140px;
-    background: white;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-  }
-
-  .card-product img {
-    height: 100%;
-    width: 120px;
-    object-fit: cover;
-  }
-
-  .card-product h2 {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  .card-product p {
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: .7;
-    margin-bottom: 0;
-    margin-top: 8px;
-  }
-
-  .card-product .card-product-infos {
-    padding: 16px;
-  }
-
-</style>
-
-
-<div class="container">
-  <h1>Search page</h1>
-  <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info'   %>
+<div class="container" style="margin-bottom: 32px">
+  <h1>LOOKING FOR A BOOK?</h1>
+  <hr>
   <%= link_to 'search on map', search_path, class: 'btn btn-sm btn-success'   %>
 
- <hr>
   <form action="books#index" method='GET'>
     <input type="text" name="search">
     <input type="submit" value="search">
   </form>
-  <hr>
   <div class="card-contain" style="display: flex;flex-wrap: wrap;justify-content: center;padding-bottom: 50px">
     <% @books.each do |book| %>
     <div class="card-product">
@@ -65,6 +24,7 @@
       </div>
     </div>
     <% end %>
-
   </div>
+  <hr>
+  <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>
 </div>

@@ -1,15 +1,20 @@
-<h1>Create new book</h1>
-<div class="container">
+<h1>CREATE A NEW BOOK</h1>
+<div class="container" style="margin-bottom: 32px">
   <%= simple_form_for(@book) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :author %>
+  <div class="form-row d-flex">
+    <div class="form-group col-6">
+      <%= f.input :name %>
+    </div>
+    <div class="form-group col-6">
+      <%= f.input :author %>
+    </div>
+  </div>
   <%= f.input :price_per_day %>
   <%= f.input :category, collection: Book.categories.keys %>
   <%= f.input :photo %>
   <%= f.input :photo_cache, as: :hidden %>
-  <%= f.submit  class:"btn btn-primary"%>
+  <%= f.submit class:"btn btn-primary"%>
   <% end %>
-    <hr>
-  <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info'   %>
-
+  <hr>
+  <%= link_to 'Return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>
 </div>
