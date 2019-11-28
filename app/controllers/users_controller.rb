@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def update
      @user = User.find(params[:id])
-     @user = User.update(user_strong)
+     @user.update(user_strong)
      redirect_to dashboard_path(status: 'livres')
   end
 

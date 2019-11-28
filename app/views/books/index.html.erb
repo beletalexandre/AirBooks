@@ -40,6 +40,8 @@
 <div class="container">
   <h1>Search page</h1>
   <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info'   %>
+  <%= link_to 'search on map', search_path, class: 'btn btn-sm btn-success'   %>
+
  <hr>
   <form action="books#index" method='GET'>
     <input type="text" name="search">

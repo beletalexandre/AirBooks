@@ -19,6 +19,21 @@ User.destroy_all
   x= 'password'
   u.password = x
   u.password_confirmation = x
+
+resource_type = "image"
+type = "upload"
+version = "v1574953206"
+public_id = "dbvzxjrge"
+format = "jpg"
+signature = Cloudinary::Utils.api_sign_request({:public_id=>public_id,
+:version=>version}, Cloudinary.config.api_secret)
+avatar = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
+{signature}"
+
+
+
+
+
   u.save!
   puts u
   5.times do
