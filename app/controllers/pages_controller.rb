@@ -9,6 +9,7 @@ class PagesController < ApplicationController
       @transactions = current_user.transactions
       @transactionsOwner = Transaction.where(book_id: current_user.books.ids)
     end
+
   end
 
   def update

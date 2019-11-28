@@ -1,0 +1,9 @@
+<h6><%= user.first_name %>'s Books</h6>
+<div class="cards" style="display: flex; flex-wrap: wrap">
+  <% user.books.each do |book| %>
+  <div class="card" style="margin: 5px; width: 100%">
+    <%= link_to book.name, new_book_transaction_path(book)  %>
+  </div>
+
+  <% end %>
+</div>

@@ -1,6 +1,8 @@
 <div class="container" style="margin-bottom: 32px">
   <h1>LOOKING FOR A BOOK?</h1>
   <hr>
+  <%= link_to 'search on map', search_path, class: 'btn btn-sm btn-success'   %>
+
   <form action="books#index" method='GET'>
     <input type="text" name="search">
     <input type="submit" value="search">
