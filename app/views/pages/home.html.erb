@@ -2,7 +2,7 @@
   .banner {
   background-size: cover;
   background-position: center;
-  padding: 150px 0;
+  padding: 100vh 0;
 }
 
 .banner h1 {
@@ -20,17 +20,48 @@
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
+.footer {
+  display:none;
+}
+
+.navbar {
+  display: none;
+}
+
+.alertClass {
+  display: none;
+}
+
+.photo {
+  height: 100vh;
+}
+
 </style>
 
+<header class="photo" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://artsboston.org/wp-content/uploads/2016/08/Open-Book.jpg);">
+
+    <div class="contain_image">
+        <div class="contain__fly-in-text">
+            <ul class="fly-in-text hidden">
+                <li>A</li>
+                <li>i</li>
+                <li>r</li>
+                <li>B</li>
+                <li>o</li>
+                <li>o</li>
+                <li>k</li>
+                <li>s</li>
+            </ul>
+        </div>
+        <div class="webdev">Rent your books</div>
+        <div class="gobtn">
+              <%= link_to "c'est parti !", dashboard_path(status: 'livres'), class: 'btn btn-primary btn-lg'   %>
+        </div>
+
+
+    </div>
+</header>
 
 
 
-  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://artsboston.org/wp-content/uploads/2016/08/Open-Book.jpg);">
-  <div class="container">
-    <h1>AirBooks</h1>
-    <p>Rent your book</p>
-
-    <%= link_to "c'est parti !", dashboard_path(status: 'livres'), class: 'btn btn-primary'   %>
-  </div>
-</div>
 
