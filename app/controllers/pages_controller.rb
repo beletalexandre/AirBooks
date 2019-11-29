@@ -3,12 +3,12 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    if params[:status] == 'livres'
+
       @books = current_user.books
-    else
+
       @transactions = current_user.transactions
       @transactionsOwner = Transaction.where(book_id: current_user.books.ids)
-    end
+
 
   end
 
