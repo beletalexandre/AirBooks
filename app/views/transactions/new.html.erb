@@ -1,24 +1,73 @@
+<style>
+  body {background: -webkit-radial-gradient(center, ellipse cover, #ffaf4b 0%,#ff920a 100%);
+  }
+
+  #begin, #end {
+    padding: 15px;
+  }
+  .date-content {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+  }
+  .pricePerDay {
+    text-align: center;
+    width: 100%;
+    font-size: 1.2rem;
+    color: orange;
+  }
+
+  .totalPrice {
+    padding: 15px;
+    text-align: center;
+    background-color: white;
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    font-size: 1.5rem;
+    margin: 20px auto;
+    color: red;
+    line-height: 80px;
+
+  }
+  .btnRent {
+    margin: 10px auto;
+  }
+
+
+</style>
+
 <div id="transaction-new">
-  <div class="container" style="margin-left: 150px">
-    <h2><%= @book.name %></h2>
-    <h4 style="font-style: italic"><%= @book.author %></h4>
+  <div class="container pt-5">
+
     <div class="row">
-      <div class="col-4">
+      <div class="col-4 text-center" style="border: 1px dotted lightgrey;padding: 10px;background-color: rgba(0,0,0,0.3); color: white">
+        <h2><%= @book.name %></h2>
+
         <%= image_tag "livre_neutre.jpg", alt: "Livre Neutre", width: 200 %>
+        <h6 style="font-style: italic;margin-top: 5px"><%= @book.author %></h6>
       </div>
-      <div class="col-8" style="border: 1px dotted lightgrey;">
-      <%= form_tag({controller: "transactions", action: "create"}, method: "post") do %>
+      <div class="col-7 offset-1" style="border: 1px dotted lightgrey;padding: 10px;background-color: rgba(0,0,0,0.3)">
+        <%= form_tag({controller: "transactions", action: "create"}, method: "post") do %>
         <div class="date">
-          <br><input type="date" id="begin" name="begin" value="">
-          <br><input type="date" id="end" name="end" value="">
+          <div class="date-content">
+            debut :
+            <input type="date" id="begin" name="begin" value="<%= @begin %>">
+            fin :
+            <input type="date" id="end" name="end" value="<%= @end %>">
+          </div>
+
           <br><input type="hidden" id="p" value="<%= @book.price_per_day %>"=>
         </div>
-        <div>
-          <p>Prix : <%= @book.price_per_day %> €/jour</p>
-        </div>
-        <div>
-          <p>Prix total : <span id="price"></span> €</p>
-          <button type="submit" class="btn btn-primary">Je loue</button>
+        <div class="pricePerDay">Prix : <%= @book.price_per_day %> €/jour</div>
+        <div class="totalPrice"><span id="price"><%= @book.price_per_day %></span> €</div>
+        <div class="btnRent">
+
+          <button type="submit" class="btn btn-primary d-block w-100">Je loue</button>
+
         </div>
         <hr>
         <%= link_to 'return to dashboard', dashboard_path(status: 'livres'), class: 'btn btn-sm btn-info' %>

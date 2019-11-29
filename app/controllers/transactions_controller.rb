@@ -12,6 +12,9 @@ class TransactionsController < ApplicationController
     @book = Book.find(params[:book_id])
     @transaction = Transaction.new
     @transaction.book = @book
+    @begin = Date.today
+    @end = Date.tomorrow
+
   end
 
   def create
