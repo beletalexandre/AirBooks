@@ -14,7 +14,6 @@ class BooksController < ApplicationController
         lat: user.latitude,
         lng: user.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { user: user })
-
       }
     end
 
@@ -22,13 +21,17 @@ class BooksController < ApplicationController
 
   def index
     @s = params[:search]
+
     if @s.nil?
       @books = []
       b = Book.all
-      @books = b.reject {|item| item.user = current_user}
+      @books = b.reject {|item| item.user == current_user}
 
     else
-      @books = Book.where("name ilike ?", "%#{@s}%")
+      @books = []
+      b = Book.where("name ilike ?", "%#{@s}%")
+      @books = b.reject {|item| item.user == current_user}
+
     end
   end
 

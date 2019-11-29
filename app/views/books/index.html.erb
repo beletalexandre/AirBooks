@@ -1,12 +1,15 @@
 <div class="container" style="margin-bottom: 32px">
-  <h1>LOOKING FOR A BOOK?</h1>
+  <h1 style="color: white">LOOKING FOR A BOOK?</h1>
   <hr>
-  <%= link_to 'search on map', search_path, class: 'btn btn-sm btn-success'   %>
+  <div style="display: flex;justify-content: space-between">
+    <%= link_to 'search on map', search_path, class: 'btn btn-sm btn-success'   %>
 
-  <form action="books#index" method='GET'>
-    <input type="text" name="search">
-    <input type="submit" value="search">
-  </form>
+    <form action="books#index" method='GET'>
+      <input type="text" name="search">
+      <input type="submit" value="search">
+    </form>
+  </div>
+  <hr>
   <div class="card-contain" style="display: flex;flex-wrap: wrap;justify-content: center;padding-bottom: 50px">
     <% @books.each do |book| %>
     <div class="card-product">
