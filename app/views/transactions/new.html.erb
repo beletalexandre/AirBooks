@@ -80,7 +80,7 @@
   function calcul(b, e, p) {
     e = new Date(e)
     b = new Date(b)
-    return ((e - b) / 86400000) * parseInt(p)
+    return ((e - b) / 86400000) * parseFloat(p)
   }
 
   begin = document.getElementById('begin')

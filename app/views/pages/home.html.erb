@@ -36,8 +36,14 @@
         </div>
         <div class="webdev">Rent your books</div>
         <div class="gobtn">
-              <%= link_to "let' go !", dashboard_path(status: 'livres'), class: 'btn btn-primary btn-lg rounded'   %>
-        </div>
+          <% if user_signed_in? %>
+          <%= link_to "let' go !", dashboard_path(status: 'livres'), class: 'btn btn-primary btn-lg rounded'   %>
+
+          <% else %>
+          <%= link_to "let' go !", new_user_session_path, class: 'btn btn-primary btn-lg rounded'   %>
+
+          <% end %>
+                      </div>
     </div>
 </header>
 
